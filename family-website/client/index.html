@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Website</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/photos.css">
+    <link rel="stylesheet" href="styles/blog.css">
+    <link rel="stylesheet" href="styles/calendar.css">
+    <link rel="stylesheet" href="styles/profiles.css">
+    <link rel="stylesheet" href="styles/messages.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Family Website</h1>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="photos">Photos</a>
+                <a href="#" class="nav-link" data-page="blog">Blog</a>
+                <a href="#" class="nav-link" data-page="calendar">Calendar</a>
+                <a href="#" class="nav-link" data-page="profiles">Profiles</a>
+                <a href="#" class="nav-link" data-page="messages">Messages</a>
+                <span class="nav-link" id="authSection">
+                    <a href="#" class="nav-link" data-page="login" id="loginLink">Login</a>
+                    <a href="#" class="nav-link" data-page="register" id="registerLink">Register</a>
+                </span>
+                <span class="nav-link" id="userSection" style="display: none;">
+                    <span id="userName"></span>
+                    <a href="#" class="nav-link" id="logoutLink">Logout</a>
+                </span>
+            </div>
+            <button class="nav-toggle" id="navToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Home Page -->
+        <div class="page" id="homePage">
+            <div class="page-header">
+                <h2>Welcome to Our Family Website</h2>
+                <p>Stay connected, share memories, and keep up with family events</p>
+            </div>
+            <div class="home-grid">
+                <div class="home-card">
+                    <h3>📸 Photo Gallery</h3>
+                    <p>Share and organize family photos in albums</p>
+                    <a href="#" class="btn" data-page="photos">View Photos</a>
+                </div>
+                <div class="home-card">
+                    <h3>📝 Family Blog</h3>
+                    <p>Read and share family news and updates</p>
+                    <a href="#" class="btn" data-page="blog">Read Blog</a>
+                </div>
+                <div class="home-card">
+                    <h3>📅 Event Calendar</h3>
+                    <p>View and RSVP to family events</p>
+                    <a href="#" class="btn" data-page="calendar">View Calendar</a>
+                </div>
+                <div class="home-card">
+                    <h3>👥 Family Profiles</h3>
+                    <p>Learn about family members</p>
+                    <a href="#" class="btn" data-page="profiles">View Profiles</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div class="page" id="loginPage" style="display: none;">
+            <div class="auth-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username or Email</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <p class="auth-switch">Don't have an account? <a href="#" data-page="register">Register</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div class="page" id="registerPage" style="display: none;">
+            <div class="auth-container">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regUsername">Username</label>
+                        <input type="text" id="regUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regFullName">Full Name</label>
+                        <input type="text" id="regFullName">
+                    </div>
+                    <div class="form-group">
+                        <label for="regBio">Bio</label>
+                        <textarea id="regBio" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="regRelationship">Relationship</label>
+                        <input type="text" id="regRelationship" placeholder="e.g., Mother, Father, Son, Daughter">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <p class="auth-switch">Already have an account? <a href="#" data-page="login">Login</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Photos Page -->
+        <div class="page" id="photosPage" style="display: none;">
+            <div class="page-header">
+                <h2>Photo Gallery</h2>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-primary" id="createAlbumBtn" style="display: none;">Create Album</button>
+                    <button class="btn btn-secondary" id="uploadPhotoBtn" style="display: none;">Upload Photo</button>
+                </div>
+            </div>
+            <div class="albums-container" id="albumsContainer"></div>
+            <div class="photos-container" id="photosContainer"></div>
+        </div>
+
+        <!-- Blog Page -->
+        <div class="page" id="blogPage" style="display: none;">
+            <div class="page-header">
+                <h2>Family Blog</h2>
+                <button class="btn btn-primary" id="createPostBtn" style="display: none;">New Post</button>
+            </div>
+            <div class="blog-container" id="blogContainer"></div>
+        </div>
+
+        <!-- Calendar Page -->
+        <div class="page" id="calendarPage" style="display: none;">
+            <div class="page-header">
+                <h2>Event Calendar</h2>
+                <button class="btn btn-primary" id="createEventBtn" style="display: none;">Create Event</button>
+            </div>
+            <div class="calendar-container" id="calendarContainer"></div>
+        </div>
+
+        <!-- Profiles Page -->
+        <div class="page" id="profilesPage" style="display: none;">
+            <div class="page-header">
+                <h2>Family Members</h2>
+            </div>
+            <div class="profiles-container" id="profilesContainer"></div>
+        </div>
+
+        <!-- Messages Page -->
+        <div class="page" id="messagesPage" style="display: none;">
+            <div class="page-header">
+                <h2>Messages</h2>
+                <button class="btn btn-primary" id="composeMessageBtn" style="display: none;">Compose</button>
+            </div>
+            <div class="messages-container" id="messagesContainer"></div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/photos.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/profiles.js"></script>
+    <script src="js/messages.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
